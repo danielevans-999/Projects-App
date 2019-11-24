@@ -9,6 +9,7 @@ class Profile(models.Model):
     Last_Name = models.CharField(max_length=50)
     Email = models.EmailField(max_length=50)
     bio = HTMLField()
-    phone = models.IntegerField(max_length=10)
-    user = models.ForeignKey(User,on_delete=models.CASCADE,primary_key=True)
+    phone = models.PositiveIntegerField()
+    profile_pic = models.ImageField(upload_to='images/' , default='images/smoke.jpeg')
+    user = models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True)
 
