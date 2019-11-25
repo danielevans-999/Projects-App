@@ -7,7 +7,7 @@ def home(request):
     projects = Post.objects.all()
     return render(request,'myprojects/index.html',{"projects":projects})
 
-@login_required (login_url='/accounts/login/')   
+@login_required (login_url='/accounts/login/?next=/')   
 def new_project(request):
     current_user = request.user
     if request.method == 'POST':

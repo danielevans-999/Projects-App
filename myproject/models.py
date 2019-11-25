@@ -11,16 +11,14 @@ class Profile(models.Model):
     Last_Name = models.CharField(max_length=50)
     Email = models.EmailField(max_length=50)
     bio = HTMLField()
-    phone = models.PositiveIntegerField()
     profile_pic = models.ImageField(upload_to='images/' , default='images/smoke.jpeg')
     user = models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True)
     
 @receiver(post_save,sender=User)
-def new_profile(sender,instance, create,**kwargs):
+def create_profile(sender, instance,created,**kwargs):
     if created:
         Profile.objects.create(user=instance)
-
-
+    
 @receiver(post_save,sender=User)
 def save_profile(sender, instance,**kwargs):
     instance.profile.save()
