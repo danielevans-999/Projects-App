@@ -2,6 +2,8 @@ from django.db import models
 import datetime as dt 
 from django.contrib.auth.models import User
 from tinymce.models import HTMLField
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 class Profile(models.Model):
@@ -12,7 +14,17 @@ class Profile(models.Model):
     phone = models.PositiveIntegerField()
     profile_pic = models.ImageField(upload_to='images/' , default='images/smoke.jpeg')
     user = models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True)
+    
+@receiver(post_save,sender=User)
+def new_profile(sender,instance, create,**kwargs):
+    if created:
+        Profile.objects.create(user=instance)
 
+
+@receiver(post_save,sender=User)
+def save_profile(sender, instance,**kwargs):
+    instance.profile.save()
+    
 class Post(models.Model):
     title =  models.CharField(max_length=30)
     image = models.ImageField(upload_to='post/')

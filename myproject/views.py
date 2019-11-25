@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from . models import *
-from .forms import ProjectUpload
+from .forms import ProjectUpload,UpdateProfileForm
 from django.contrib.auth.decorators import login_required
 
 def home(request):
@@ -33,3 +33,29 @@ def search_project(request):
     else:
         message = "You haven't searched for any term "
         return render(request, 'myprojects/search.html', {"message": message})
+
+
+  
+    
+    
+def update_profile(request):
+    user_profile = Profile.objects.get(user=request.user)
+    # form = UpdateProfileForm(instance=request.user)
+    
+    if request.method == "POST":
+        form =  UpdateProfileForm(request.POST,request.FILES,instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+        return redirect('home')
+    else:
+        form = UpdateProfileForm(instance=request.user.profile)
+        return render(request,'myprojects/update-prof.html', {'form':form})
+    
+def profile_info(request):
+    
+    current_user=request.user
+    profile_info = Profile.objects.filter(user=current_user).first()
+    projects =  request.user.post_set.all()
+    
+    
+    return render(request,'myprojects/profile.html',{"projects":projects,"profile":profile_info,"current_user":current_user})
