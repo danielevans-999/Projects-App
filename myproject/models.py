@@ -15,7 +15,7 @@ class Profile(models.Model):
 
 class Post(models.Model):
     title =  models.CharField(max_length=30)
-    image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to='post/')
     description = HTMLField()
     link = models.CharField(max_length=500)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
