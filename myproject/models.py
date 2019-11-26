@@ -30,6 +30,17 @@ class Post(models.Model):
     link = models.CharField(max_length=500)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     
+    def save_post(self):
+        self.save()
+        
+    def delete_post(self):
+        self.delete()
+        
+    
+    def __str__(self):
+        
+        return self.title
+    
 class Reviews(models.Model):
     title = models.CharField(max_length=50)
     review = models.TextField()
