@@ -18,6 +18,10 @@ This is a social media website that enables one to post projects and also can se
 
 To view the application go to [click here]( https://danterater.herokuapp.com/)
 
+project posting API[visit here](https://danterater.herokuapp.com/posts/)
+
+profiles API[visit here](https://danterater.herokuapp.com/profiles/)
+
 - Step 1: Clone this repo :git clone (https://github.com/danielevans-999/Projects-App)
 
 - step 2: Open the repo using your text editor e.g atom or vscode
