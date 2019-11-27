@@ -9,9 +9,10 @@ https://docs.djangoproject.com/en/1.11/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
-
+import dj_database_url
 import os
-
+import django_heroku
+from decouple import Config,Csv
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -44,6 +45,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    
+    
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -126,6 +130,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
@@ -141,3 +147,5 @@ STAR_RATINGS_RERATE = False
 STAR_RATINGS_RANGE=10
 STAR_RATINGS_STAR_HEIGHT=20
 STAR_RATINGS_STAR_WIDTH=20
+
+django_heroku.settings(locals())
