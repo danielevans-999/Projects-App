@@ -16,8 +16,8 @@ This is a social media website that enables one to post projects and also can se
 |click on the profile pic     |click the edit button    | Edits the user profile|
 ## Installing 
 
-To view the application go to [click here](  )
-https://github.com/danielevans-999/Instagram
+To view the application go to [click here]( https://danterater.herokuapp.com/)
+
 - Step 1: Clone this repo :git clone (https://github.com/danielevans-999/Projects-App)
 
 - step 2: Open the repo using your text editor e.g atom or vscode
