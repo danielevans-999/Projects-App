@@ -150,3 +150,9 @@ STAR_RATINGS_STAR_HEIGHT=20
 STAR_RATINGS_STAR_WIDTH=20
 
 django_heroku.settings(locals())
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
